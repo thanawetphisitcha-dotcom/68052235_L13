@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>เมนูขนม | Sweet Bakery</title>
+{% endblock %}
+
+{% block content %}
+    
+<style>
+
+.gallery-section {
+    max-width: 1000px;
+    margin: 50px auto;
+    text-align: center;
+    font-family: 'Sarabun', sans-serif;
+}
+
+.gallery-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #6B3E26;
+}
+
+.gallery-subtitle {
+    font-size: 0.95rem;
+    color: #8B5E3C;
+    margin-bottom: 30px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 10px;
+}
+
+.gallery-item {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: 0.4s;
+}
+
+.gallery-item img:hover{
+    transform: scale(1.08);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+</style>
+
+<div class="gallery-section">
+
+    <h1 class="gallery-title">เมนูขนมของเรา</h1>
+
+    <p class="gallery-subtitle">
+        ขนมโฮมเมด อบสดใหม่ทุกวัน ด้วยวัตถุดิบคุณภาพ เพื่อให้ลูกค้าได้ลิ้มลองความอร่อยในทุกคำ
+    </p>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec" alt="Croissant">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b" alt="Cake">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec" alt="Bread">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e" alt="Donut">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729" alt="Cheesecake">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75" alt="Cupcake">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1587241321921-91a834d6d191" alt="Cookie">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e" alt="Strawberry Cake">
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713" alt="Bakery">
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

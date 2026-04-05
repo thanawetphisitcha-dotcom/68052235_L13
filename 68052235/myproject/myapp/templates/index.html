@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>หน้าแรกของเว็บไซต์</title>
+{% endblock %}
+
+{% block content %}
+    <h2 style="color: #3A2E2E;">ยินดีต้อนรับเข้าสู่ประชากร</h2>
+
+    <div class="search-container">
+        <form action="" method="GET" class="search-form">
+            <input class="search-input" type="search" name="q" placeholder="🔍 ค้นหาชื่อประชากร...." 
+            aria-label="Search" value="{{ request.GET.q }}">
+            <button class="btn-search" type="submit">ค้นหา</button>
+            <a href="/" class="btn-clear">ล้างค่า</a>
+        </form>
+    </div>
+
+    <table class="table table-hover">
+    <thead>
+        <tr>
+            <th>รหัสประชากร</th>
+            <th>ชื่อประชากร</th>
+            <th>อายุ</th>
+            <th>วันที่เพิ่มข้อมูล</th>
+            <th>แก้ไข</th>
+            <th>ลบ</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in all_person %}
+        <tr>
+            <td>{{ person.id }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.created_at|date:"F d, Y" }}</td>
+            <td>
+                <a href="/edit/{{ person.id }}/" class="btn btn-warning">แก้ไข</a>
+            </td>
+            <td>
+                <a href="/delete/{{ person.id }}/" class="btn btn-danger">ลบ</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center text-muted" style="padding: 20px;">
+                ไม่พบข้อมูลที่คุณค้นหา
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="container-content">
+    <header>
+        <h1 class="main-title">Sweet Bakery เป็นร้านเบเกอรี่โฮมเมดที่เน้นวัตถุดิบคุณภาพดีอบสดใหม่ทุกวัน เพื่อให้ลูกค้าได้ลิ้มลองขนมที่อร่อยและปลอดภัย</h1>
+    </header>
+
+    <section class="content-section">
+    <div class="card">
+        <h3>สินค้า</h3>
+        <div class="card-body">
+            <img src="https://images.pexels.com/photos/30153444/pexels-photo-30153444.jpeg" alt="Product Image">
+            <p>ร้านของเราจำหน่ายขนมเบเกอรี่หลากหลายชนิด เช่น ครัวซองต์ เค้ก คุกกี้ และขนมปังโฮมเมดที่อบสดใหม่ทุกวัน เราเลือกใช้วัตถุดิบคุณภาพดี เพื่อให้ลูกค้าได้ลิ้มลองรสชาติที่หอม อร่อย และสดใหม่ในทุกคำ</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>บริการ</h3>
+        <div class="card-body">
+            <img src="https://images.pexels.com/photos/30158835/pexels-photo-30158835.jpeg" alt="Service Image">
+            <p>เรามีบริการรับทำเค้กตามสั่งสำหรับโอกาสพิเศษ เช่น เค้กวันเกิด เค้กงานเลี้ยง และเค้กเทศกาลต่างๆ พร้อมทั้งบริการจัดชุดขนมสำหรับงานประชุม งานเลี้ยง และบริการจัดส่งในพื้นที่ใกล้เคียง</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>เกี่ยวกับเรา</h3>
+        <div class="card-body">
+            <img src="https://images.pexels.com/photos/33650388/pexels-photo-33650388.jpeg" alt="About Us Image">
+            <p>Sweet Bakery เป็นร้านเบเกอรี่โฮมเมดที่ตั้งใจสร้างสรรค์ขนมอบที่มีคุณภาพ ด้วยสูตรเฉพาะของทางร้านและการอบสดใหม่ทุกวัน เรามุ่งมั่นที่จะมอบความสุขและรอยยิ้มให้กับลูกค้าผ่านรสชาติของขนมที่อร่อยและอบอุ่นเหมือนทำจากบ้าน</p>
+        </div>
+    </div>
+</section>
+
+    <section class="map-section">
+        <h3>แสดงแผนที่ใน Google Map</h3>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.5509!2d100.5231!3d13.7367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQ0JzEyLjYiTiAxMDDCsDMxJzIzLjEiRQ!5e0!3m2!1sth!2sth!4v123456789" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </section>
+</div>
+
+<style>
+/* CSS เดิมของคุณ */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.table thead {
+    background-color: #f0f0f0;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #fff3cd;
+}
+
+.btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.btn-warning {
+    background-color: #ff69b4;
+}
+
+.btn-warning:hover {
+    background-color: #e0559c;
+}
+
+.btn-danger {
+    background-color: #ff8c00;
+}
+
+.btn-danger:hover {
+    background-color: #e67e00;
+}
+
+.container-content {
+    max-width: 1000px;
+    margin: 40px auto 20px auto;
+    padding: 0 15px;
+}
+
+.main-title {
+    color: #6B3E26;
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-align:center;
+}
+
+.card {
+    background: #FFFDF8;
+    border: 1px solid #E6CBA8;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #F3E2C7;
+    padding-bottom: 10px;
+    color: #8B5E3C;
+}
+
+.card-body {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-top: 15px;
+}
+
+.card-body img {
+    width: 300px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-body p {
+    flex: 1;
+    margin: 0;
+    line-height: 1.7;
+    color: #3A2E2E;
+}
+
+.map-section {
+    background: #FFFDF8;
+    border: 1px solid #E6CBA8;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.map-section h3{
+    color:#8B5E3C;
+}
+
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #E6CBA8;
+    margin-top: 15px;
+}
+
+
+
+.search-container {
+    width: 80%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: flex-end; /* ดันฟอร์มไปทางขวาให้ตรงขอบตาราง */
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: #FFFDF8;
+    padding: 8px 15px;
+    border-radius: 30px;
+    border: 1px solid #E6CBA8;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 5px 10px;
+    font-size: 15px;
+    width: 280px;
+    color: #3A2E2E;
+}
+
+.search-input::placeholder {
+    color: #BBAA99;
+}
+
+.btn-search {
+    background-color: #8B5E3C; /* สีน้ำตาลเข้ากับธีม */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.btn-search:hover {
+    background-color: #6B3E26;
+}
+
+.btn-clear {
+    background-color: #fff;
+    color: #8B5E3C;
+    text-decoration: none;
+    padding: 7px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+    border: 1px solid #E6CBA8;
+}
+
+.btn-clear:hover {
+    background-color: #F3E2C7;
+    color: #6B3E26;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-body {
+        flex-direction: column;
+    }
+
+    .card-body img {
+        width: 100%;
+        height: auto;
+    }
+
+    .search-container {
+        justify-content: center;
+    }
+    
+    .search-form {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .search-input {
+        width: 100%;
+    }
+}
+</style>
+{% endblock %}
